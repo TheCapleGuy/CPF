@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Microsoft.Win32;
+
 namespace SpriteGenerator
 {
     /// <summary>
@@ -24,5 +26,10 @@ namespace SpriteGenerator
         {
             InitializeComponent();
         }
+    }
+    class ImageIO
+    {
+        public OpenFileDialog ODlog = new Microsoft.Win32.OpenFileDialog();
+
     }
 }

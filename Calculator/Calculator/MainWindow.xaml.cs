@@ -94,46 +94,53 @@ namespace Calculator
         }
         private void Button_Equals(object sender, RoutedEventArgs e)
         {
-            secNum = Convert.ToInt32(numberValue);
-            if (mathOperation == MathState.ADDITION)
+            if (numberValue != " ")
             {
-                answer = firstNum + secNum;
-                numberValue = answer.ToString();
-                calcDisplay.Text = numberValue;
-            }
-            else if (mathOperation == MathState.SUBTRACTION)
-            {
-                answer = firstNum - secNum;
-                numberValue = answer.ToString();
-                calcDisplay.Text = numberValue;
-            }
-            else if (mathOperation == MathState.MULTIPLICATION)
-            {
-                answer = firstNum * secNum;
-                numberValue = answer.ToString();
-                calcDisplay.Text = numberValue;
-            }
-            else if (mathOperation == MathState.DIVISION)
-            {
-                try
+                secNum = Convert.ToInt32(numberValue);
+                if (mathOperation == MathState.ADDITION)
                 {
-                    answer = firstNum / secNum;
+                    answer = firstNum + secNum;
+                    numberValue = answer.ToString();
+                    calcDisplay.Text = numberValue;
                 }
-                catch(System.DivideByZeroException)
+                else if (mathOperation == MathState.SUBTRACTION)
                 {
-                    Console.WriteLine("Fuck you terry");
-                    answer = 0;
+                    answer = firstNum - secNum;
+                    numberValue = answer.ToString();
+                    calcDisplay.Text = numberValue;
                 }
-               //if(secNum != 0)
-               //{
-               //    answer = firstNum / secNum;
-               //}
-               //else
-               //{
-               //    Console.WriteLine("Fuck you terry");
-               //}
-               numberValue = answer.ToString();
-               calcDisplay.Text = numberValue;
+                else if (mathOperation == MathState.MULTIPLICATION)
+                {
+                    answer = firstNum * secNum;
+                    numberValue = answer.ToString();
+                    calcDisplay.Text = numberValue;
+                }
+                else if (mathOperation == MathState.DIVISION)
+                {
+                    try
+                    {
+                        answer = firstNum / secNum;
+                    }
+                    catch (System.DivideByZeroException)
+                    {
+                        Console.WriteLine("Fuck you terry");
+                        answer = 0;
+                    }
+                    //if(secNum != 0)
+                    //{
+                    //    answer = firstNum / secNum;
+                    //}
+                    //else
+                    //{
+                    //    Console.WriteLine("Fuck you terry");
+                    //}
+                    numberValue = answer.ToString();
+                    calcDisplay.Text = numberValue;
+                }
+            }
+            else
+            {
+                 calcDisplay.Text = numberValue;
             }
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
