@@ -22,5 +22,6 @@
         <Button Content="0" HorizontalAlignment="Left" Height="30" Margin="88,277,0,0" VerticalAlignment="Top" Width="47" Click="Button_Click_0"/>
         <Button Content="clear" HorizontalAlignment="Left" Height="30" Margin="35,277,0,0" VerticalAlignment="Top" Width="47" Click="Button_Clear"/>
         <Button Content="+\-" HorizontalAlignment="Left" Height="30" Margin="142,277,0,0" VerticalAlignment="Top" Width="47" Click="Button_Flip"/>
+        <TextBox x:Name="History" HorizontalAlignment="Left" Height="189" Margin="262,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="245"/>
     </Grid>
 </Window>

@@ -1,0 +1,23 @@
+﻿<Window x:Class="SpriteGenerator.CanvasPopUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CanvasPopUp" Height="300" Width="300">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+        <Label Width="200" HorizontalAlignment="Left">
+            <AccessText>
+                Width : 
+            </AccessText>
+        </Label>
+            <TextBox Width="208"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Width="200" HorizontalAlignment="Left">
+                <AccessText>
+                    Height :
+                </AccessText>
+            </Label>
+            <TextBox Width="208"/>
+        </StackPanel>
+        </StackPanel>
+</Window>
