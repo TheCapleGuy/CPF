@@ -35,28 +35,67 @@ namespace SpriteGenerator
 
     public class MyImage : Image
     {
-
-        public double x { get; set; }
-        public double y { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
+        public int rowPos;
     }
 
     public partial class MainWindow : Window
     {
         string fileName;
+        int currentRow = 0;
+        string setMaxWidth = "";
         List<MyImage> ImageList = new List<MyImage>();
-        private CanvasPopUp myController = new CanvasPopUp();
+        private CanvasPopUp myPopUpController = new CanvasPopUp();
 
         public MainWindow()
         {
             InitializeComponent();
+        }
+        public void UpdateCanvasWidth()
+        {
+            canvasControl.MaxWidth = Convert.ToDouble(setMaxWidth);
+            if (ImageList.Count() == 0)
+            {
+                canvasControl.Width = canvasControl.Height = 125;
+            }
+            else if (ImageList.Count() > 0)
+            {
+                //Set Canvas Width based off Width of ImageLists
+                double totalImageWidth = 0;
+                for (int i = 0; i < ImageList.Count(); i++)
+                {
+                    totalImageWidth += ImageList[i].Width;
+                }
+                canvasControl.Width = totalImageWidth;
+            }
+        }
+        public int UpdateCanvasHeight(int cRow)
+        {
+            int heighestSoFar;
+            if(ImageList.Count() == 0)
+            {
+                heighestSoFar = 125;
+            }
+            else
+            {
+                heighestSoFar = Convert.ToInt32(ImageList.First().Height);
+                for (int i = 0; i < currentRow; i++)
+                {
+                    if (ImageList[i].rowPos == cRow && ImageList.First().Height > heighestSoFar)
+                    {
+                        heighestSoFar += Convert.ToInt32(ImageList.First().Height);
+                    }
+                }
+            }
 
+            return heighestSoFar;
         }
 
         private void Menu_New(object sender, RoutedEventArgs e)
         {
             canvasControl.Children.Clear();
-            myController.Show();
-
+            myPopUpController.Show();
             Console.WriteLine("NEWED");
         }
 
@@ -97,6 +136,7 @@ namespace SpriteGenerator
         private void Menu_Exit(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("EXITED");
+            System.Environment.Exit(1);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -127,28 +167,44 @@ namespace SpriteGenerator
 
                if (ImageList.Count() == 0)
                {
-                   _myImage.x = _myImage.y = 0;
+                   _myImage.X = _myImage.Y = 0;
+               }
+               else if (ImageList.Count() == 1)
+               {
+                   int heightAdjust = UpdateCanvasHeight(currentRow);
+                   canvasControl.Height = heightAdjust;
                }
                else
                {
-                   _myImage.x = ImageList.Last().x + ImageList.Last().Width;
-                   _myImage.y = ImageList.Last().y;
-                   if (_myImage.x > 1000)
+                   _myImage.X = ImageList.Last().X + ImageList.Last().Width;
+                   _myImage.Y = ImageList.Last().Y;
+                   if (_myImage.X > canvasControl.MaxWidth)
                    {
-                       _myImage.x = 0;
-                       _myImage.y += ImageList.Last().Height;
+
+                       _myImage.X = 0;
+                       int heightAdjust = UpdateCanvasHeight(currentRow);
+                       _myImage.Y += heightAdjust;
+                       canvasControl.Height += heightAdjust;
+                       currentRow++;
                    }
                }
                _myImage.Source = _image;
                _myImage.Width = _image.Width;
                _myImage.Height = _image.Height;
+               _myImage.rowPos = currentRow;
                ImageList.Add(_myImage);
 
-               Canvas.SetTop(_myImage, _myImage.y);
-               Canvas.SetLeft(_myImage, _myImage.x);
+               Canvas.SetTop(_myImage, _myImage.Y);
+               Canvas.SetLeft(_myImage, _myImage.X);
                canvasControl.Children.Add(_myImage);
+               UpdateCanvasWidth();
            }
-           
+        }
+
+        private void Width_text_box_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            setMaxWidth = Console.ReadLine();
+            canvasControl.MaxWidth = Convert.ToDouble(setMaxWidth);
         }
     }
 }
