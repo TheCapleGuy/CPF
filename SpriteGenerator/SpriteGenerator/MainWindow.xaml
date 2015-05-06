@@ -17,7 +17,7 @@
         </Menu>
         <StackPanel Orientation="Horizontal" RenderTransformOrigin="0.529,0.505">
             <Button HorizontalAlignment="Right" VerticalAlignment="bottom" Content="Picture" Height="33" Width="64" Click="Click_Picture" Margin="0,0,0,143"/>
-            <TextBox x:Name="Width_text_box" Height="24" TextWrapping="Wrap" Text="Width" Width="120" RenderTransformOrigin="0.492,0.522" TextChanged="Width_text_box_TextChanged"/>
+            <TextBox x:Name="Width_text_box" Height="24" TextWrapping="Wrap" Text="Width" Width="120" RenderTransformOrigin="0.5,0.5"/>
             <ScrollViewer>
                 <Canvas x:Name="canvasControl" Background="Gray" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="100" ClipToBounds="True" RenderTransformOrigin="0.5,0.5" Margin="10,10,0,0"/>
             </ScrollViewer>

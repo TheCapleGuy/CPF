@@ -44,17 +44,20 @@ namespace SpriteGenerator
     {
         string fileName;
         int currentRow = 0;
-        string setMaxWidth = "";
+        //string setMaxWidth = "";
         List<MyImage> ImageList = new List<MyImage>();
         private CanvasPopUp myPopUpController = new CanvasPopUp();
 
         public MainWindow()
         {
-            InitializeComponent();
+                InitializeComponent();
         }
         public void UpdateCanvasWidth()
         {
-            canvasControl.MaxWidth = Convert.ToDouble(setMaxWidth);
+            //data binding to set a max Width
+            //to do list 
+            //canvasControl.MaxWidth = Convert.ToDouble(setMaxWidth);
+            canvasControl.MaxWidth = 1000;
             if (ImageList.Count() == 0)
             {
                 canvasControl.Width = canvasControl.Height = 125;
@@ -199,12 +202,6 @@ namespace SpriteGenerator
                canvasControl.Children.Add(_myImage);
                UpdateCanvasWidth();
            }
-        }
-
-        private void Width_text_box_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            setMaxWidth = Console.ReadLine();
-            canvasControl.MaxWidth = Convert.ToDouble(setMaxWidth);
         }
     }
 }
